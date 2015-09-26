@@ -62,7 +62,7 @@ def main():
 
     while True:
         time.sleep(args.sleep)
-        print('{0} events/sec'.format(count.value))
+        print('{0} events/{1}s'.format(count.value, args.sleep))
         count.value = 0
 
     p.join()
