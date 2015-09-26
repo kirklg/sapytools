@@ -23,7 +23,6 @@ THE SOFTWARE.
 
 """
 
-import os
 import time
 import select
 import argparse
@@ -44,7 +43,7 @@ def main():
 
     arg_parser = argparse.ArgumentParser()
     arg_parser.add_argument('-f', dest='logfile', required=True)
-    arg_parser.add_argument('-t', dest='sleep', action='store', type=int, default=1)
+    arg_parser.add_argument('-t', dest='sleep', type=int, default=1)
 
     args = arg_parser.parse_args()
 
