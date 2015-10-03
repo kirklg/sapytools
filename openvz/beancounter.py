@@ -68,7 +68,7 @@ class BeanCounter(object):
     def set(self, veid, counter, min_limit, max_limit):
         """ Run vzctl set command and save beancounter for veid """
         try:
-            from sh import vzctl
+            from sh import vzctl, ErrorReturnCode
         except ImportError:
             raise
         if counter not in self.counters:
