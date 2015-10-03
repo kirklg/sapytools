@@ -28,12 +28,13 @@ applications executing in an OpenVZ environment.
 
 """
 
-import subprocess
 from collections import namedtuple
+
 
 class BeancounterNotFound(Exception):
     """ raise when counter is invalid """
     pass
+
 
 class BeanCounter(object):
     """ openvz.BeanCounter interface """
@@ -70,13 +71,12 @@ class BeanCounter(object):
             from sh import vzctl
         except ImportError:
             raise
-        set_cmd = 'vzctl set {veid} --{counter}={min_limit}:{max_limit} --save'.format(**locals())
         if counter not in self.counters:
             raise BeancounterNotFound(counter)
         else:
             try:
-                subprocess.check_call(set_cmd, shell=True)
-            except subprocess.CalledProcessError:
+                vzctl.set('{veid} --{counter}={min_limit}:{max_limit} --save'.format(**locals()))
+            except ErrorReturnCode:
                 raise
 
     def get(self, counter=None, veid=None, _all=False):
