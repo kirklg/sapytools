@@ -25,9 +25,6 @@ set -u
 # THE SOFTWARE.
 
 # Requires inotify-tools
-# Example:
-# $ file-watch-trigger -e <event> -f <file_to_watch> -tr ./<executable trigger>
-# $ file-watch-trigger -e modify -f /tmp/data -t ./cat.sh
 
 usage="
 -f      File to watch
@@ -35,6 +32,10 @@ usage="
 -t      Trigger when event occurs on file
 -l      List inotify events
 -h      Help
+
+Example:
+$ $0 -e <event> -f <file_to_watch> -t ./<executable trigger>
+$ $0 -e modify -f /tmp/data -t ./cat.sh
 "
 
 
