@@ -1,2 +1,2 @@
 # sapytools
-Collection of sysadmin python tools
+Collection of sysadmin python and shell tools
