@@ -89,6 +89,6 @@ fi
 
 echo "Watching \"$file_to_watch\" for event \"$event\" with trigger \"$trigger\"" >&2
 while true; do
-    inotifywait -e ${event} $file_to_watch >/dev/null 2>&1 && $trigger
+    inotifywait -e $event $file_to_watch >/dev/null 2>&1 && $trigger
     sleep 1
 done
