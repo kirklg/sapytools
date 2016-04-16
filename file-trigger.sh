@@ -25,6 +25,12 @@ set -u
 # THE SOFTWARE.
 
 # Requires inotify-tools
+which inotifywait 1>/dev/null 2>&1
+if [[ $? -ne 0 ]]; then
+    echo "inotify-tools not installed"
+    exit 1
+fi
+
 
 usage="
 -f      File to watch
