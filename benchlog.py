@@ -23,10 +23,11 @@ THE SOFTWARE.
 
 """
 
-import time
-import select
 import argparse
+import select
+import time
 from multiprocessing import Process, Value
+
 
 def log_counter(log, count):
     poll = select.poll()
@@ -39,8 +40,8 @@ def log_counter(log, count):
                 for _ in fd:
                     count.value += 1
 
-def main():
 
+def main():
     arg_parser = argparse.ArgumentParser()
     arg_parser.add_argument('-f', dest='logfile', required=True)
     arg_parser.add_argument('-t', dest='sleep', type=int, default=1)
@@ -57,6 +58,7 @@ def main():
         count.value = 0
 
     p.join()
+
 
 if __name__ == '__main__':
     main()
