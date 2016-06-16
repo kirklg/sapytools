@@ -47,14 +47,6 @@ def main():
 
     args = arg_parser.parse_args()
 
-    try:
-        with open(args.logfile, 'r'):
-            pass
-    except PermissionError:
-        raise
-    except FileNotFoundError:
-        raise
-
     count = Value('i', 0)
     p = Process(target=log_counter, args=(args.logfile, count,))
     p.start()
