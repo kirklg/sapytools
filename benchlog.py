@@ -22,11 +22,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 """
+from __future__ import absolute_import, division, print_function
 
-import time
-import select
 import argparse
+import select
+import time
 from multiprocessing import Process, Value
+
 
 def log_counter(log, count):
     poll = select.poll()
@@ -39,21 +41,13 @@ def log_counter(log, count):
                 for _ in fd:
                     count.value += 1
 
-def main():
 
+def main():
     arg_parser = argparse.ArgumentParser()
     arg_parser.add_argument('-f', dest='logfile', required=True)
     arg_parser.add_argument('-t', dest='sleep', type=int, default=1)
 
     args = arg_parser.parse_args()
-
-    try:
-        with open(args.logfile, 'r'):
-            pass
-    except PermissionError:
-        raise
-    except FileNotFoundError:
-        raise
 
     count = Value('i', 0)
     p = Process(target=log_counter, args=(args.logfile, count,))
@@ -65,6 +59,7 @@ def main():
         count.value = 0
 
     p.join()
+
 
 if __name__ == '__main__':
     main()
