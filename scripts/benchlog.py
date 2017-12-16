@@ -41,6 +41,12 @@ def main():
 
     args = arg_parser.parse_args()
 
+    # Test if file exists and is readable
+    # It is easier to do this here instead from within the child process, so the
+    # tradeoff is we open the file twice, but with the benefit that we fail early!
+    f = open(args.logfile, 'r')
+    f.close()
+
     count = Value('i', 0)
     p = Process(target=log_counter, args=(args.logfile, count,))
     p.start()
