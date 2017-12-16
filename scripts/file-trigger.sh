@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -eu -o pipefail
+set -u -o pipefail
 
 # Requires inotify-tools
 which inotifywait 1>/dev/null 2>&1
